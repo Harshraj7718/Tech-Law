@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap, reduceMotion } from '../lib/motion';
 import { useSectionMotion } from '../hooks/useSectionMotion';
 import { Words } from '../lib/ui';
+import Glyphs from './Glyphs';
 
 /**
  * Scales of justice. The beam rotates about its pivot at (300,70); each pan
@@ -43,7 +44,8 @@ export default function Scales() {
   }, []);
 
   return (
-    <section className="sec scales-sec" id="jurisdictions" ref={root}>
+    <section className="sec scales-sec has-glyphs" id="jurisdictions" ref={root}>
+      <Glyphs items={[{ ch: '§', style: { left: '-4%', top: '4%', fontSize: '34vw' }, speed: -200, spin: -20 }, { ch: '®', style: { right: '2%', bottom: '6%', fontSize: '14vw' }, speed: -110, spin: 30 }]} />
       <div className="eyebrow"><span>§ 03 &nbsp;Dual-jurisdictional</span></div>
       <h2 className="display h2" style={{ maxWidth: 1100 }}>
         <Words text="Two legal systems." /><br /><Words text="One standard of counsel." em />

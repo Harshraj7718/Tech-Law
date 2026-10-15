@@ -21,7 +21,7 @@ export default function Quiz() {
     if (!panel.current) return;
     if (!done) {
       if (reduceMotion()) return;
-      const t = gsap.from(panel.current.children, { y: 24, opacity: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out' });
+      const t = gsap.fromTo(panel.current.children, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, stagger: 0.06, ease: 'power2.out', clearProps: 'transform,opacity' });
       return () => { t.kill(); };
     }
     const v = { n: 0 };

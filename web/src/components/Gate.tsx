@@ -8,7 +8,9 @@ export default function Gate({ onEnter }: { onEnter: () => void }) {
     if (reduceMotion() || !ref.current) { onEnter(); return; }
     let done = false;
     const finish = () => { if (!done) { done = true; onEnter(); } };
-    gsap.to(ref.current, { opacity: 0, duration: 0.6, onComplete: finish });
+    gsap.timeline({ onComplete: finish })
+      .to('.gate-card', { y: -40, opacity: 0, duration: 0.4, ease: 'power2.in' })
+      .to(ref.current, { clipPath: 'inset(0 0 100% 0)', duration: 0.8, ease: 'power4.inOut' }, 0.15);
     window.setTimeout(finish, 1200); // fallback if the tab is throttled
   };
   return (

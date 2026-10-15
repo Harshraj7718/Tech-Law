@@ -6,6 +6,7 @@ import { useBooking } from '../hooks/useBooking';
 import { useSectionMotion } from '../hooks/useSectionMotion';
 import { refreshSoon } from '../lib/motion';
 import { Arrow, Words } from '../lib/ui';
+import Glyphs from './Glyphs';
 
 const EMAIL = /\S+@\S+\.\S+/;
 const folderFor = (n: string) => {
@@ -51,7 +52,8 @@ export default function Consult() {
   const folderList = Object.entries(folders);
 
   return (
-    <section className="sec on-b consult" id="consult" ref={root} style={{ padding: 0 }}>
+    <section className="sec on-b consult has-glyphs" id="consult" ref={root} style={{ padding: 0 }}>
+      <Glyphs items={[{ ch: '©', style: { left: '-5%', bottom: '-4%', fontSize: '36vw' }, speed: -180, spin: -25, fill: true }]} />
       <div className="l">
         <div className="stick">
           <div className="eyebrow"><span>§ 06 &nbsp;Book a consultation</span></div>
@@ -118,7 +120,7 @@ export default function Consult() {
             </div>
           </div>
         ) : (
-          <div className="done">
+          <div className="bk-done">
             <div className="k">Confirmed</div>
             <h3>{fmt.title}</h3>
             <div className="when">{dayObj?.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} · {slotTime} {info.tzShort}</div>

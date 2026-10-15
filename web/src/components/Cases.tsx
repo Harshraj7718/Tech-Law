@@ -20,7 +20,7 @@ export default function Cases() {
       const cards = gsap.utils.toArray<HTMLElement>('.case');
       cards.forEach((c, i) => {
         const next = cards[i + 1];
-        if (next) gsap.to(c, { scale: 0.94, opacity: 0.55, ease: 'none', scrollTrigger: { trigger: next, start: 'top 85%', end: 'top 25%', scrub: true } });
+        if (next) gsap.to(c, { scale: 0.94, filter: 'brightness(0.45)', ease: 'none', scrollTrigger: { trigger: next, start: 'top 85%', end: 'top 25%', scrub: true } });
       });
     }, root);
     return () => ctx.revert();

@@ -40,7 +40,7 @@ export default function Evaluator() {
     if (!result) return;
     refreshSoon();
     if (reduceMotion() || !res.current) return;
-    const tween = gsap.from(res.current.children, { y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' });
+    const tween = gsap.fromTo(res.current.children, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'transform,opacity' });
     return () => { tween.kill(); };
   }, [result]);
 

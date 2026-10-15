@@ -16,18 +16,22 @@ import Process from './components/Process';
 import Intake from './components/Intake';
 import Consult from './components/Consult';
 import Footer from './components/Footer';
+import Effects from './components/Effects';
+import LoadingOverlay from './components/LoadingOverlay';
+import FloatingSignature from './components/FloatingSignature';
 
 const KEY = 'gateOk';
 const seen = () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } };
 
 export default function App() {
   const [entered, setEntered] = useState(seen);
+  const [loading, setLoading] = useState(true);
 
   // Lock scrolling behind the gate; re-measure pinned sections once it lifts.
   useLayoutEffect(() => {
-    document.body.classList.toggle('locked', !entered);
-    if (entered) ScrollTrigger.refresh();
-  }, [entered]);
+    document.body.classList.toggle('locked', !entered || loading);
+    if (entered && !loading) ScrollTrigger.refresh();
+  }, [entered, loading]);
 
   useEffect(() => {
     const refresh = () => ScrollTrigger.refresh();
@@ -49,10 +53,13 @@ export default function App() {
   return (
     <RegionProvider>
       <BookingProvider>
+        {loading && <LoadingOverlay onDone={() => setLoading(false)} />}
         {!entered && <Gate onEnter={enter} />}
+        <Effects active={entered && !loading} />
+        <FloatingSignature active={entered && !loading} />
         <Nav />
         <main id="top">
-          <Hero go={entered} />
+          <Hero go={entered && !loading} />
           <Credentials />
           <Marquee />
           <Statement />

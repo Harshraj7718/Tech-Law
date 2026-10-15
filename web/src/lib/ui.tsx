@@ -15,3 +15,14 @@ export function Words({ text, em }: { text: string; em?: boolean }) {
   ));
   return em ? <em>{words}</em> : <>{words}</>;
 }
+
+/** Splits text into per-character spans (words stay unbroken) so GSAP can stagger letters. */
+export function Chars({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(' ').map((w, i) => (
+        <span key={i} className="cw">{Array.from(w).map((c, j) => <span key={j} className="ch">{c}</span>)}</span>
+      ))}
+    </>
+  );
+}

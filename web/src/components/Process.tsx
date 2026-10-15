@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, reduceMotion } from '../lib/motion';
 import { useSectionMotion } from '../hooks/useSectionMotion';
 import { Words } from '../lib/ui';
+import Glyphs from './Glyphs';
 
 const STEPS = [
   ['Step I', 'Discovery call', 'Thirty minutes, confidential and conflict-checked. You leave with a clear first step.'],
@@ -34,7 +35,8 @@ export default function Process() {
   }, []);
 
   return (
-    <section className="sec dark" id="process" ref={root}>
+    <section className="sec dark has-glyphs" id="process" ref={root}>
+      <Glyphs items={[{ ch: '¶', style: { right: '-3%', top: '10%', fontSize: '30vw' }, speed: -260, spin: 20 }]} />
       <div className="proc">
         <div className="proc-sticky">
           <div className="eyebrow"><span>§ 05 &nbsp;Engagement</span></div>
